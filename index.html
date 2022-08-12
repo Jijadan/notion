@@ -1,7 +1,7 @@
 <html> 
  <title>WikiNotion</title>
  <body>
- <h1>My WikiNotion</h1>
+ <h1>WikiNotion</h1>
 	 
  <?php
 
@@ -10,7 +10,7 @@ $semanaArray = array( "Mon" => "lunes", "Tue" => "martes", "Wed" => "miércoles"
 $title=urlencode(sprintf('{{Plantilla:Frase-%s}}', $semanaArray[$semana]));
 $sock = fopen("http://es.wikiquote.org/w/api.php?action=parse&format=php&text=$title","r");
 if (!$sock) {
-  echo "$errstr ($errno)<br/>\n"; ##Error si no ha sido posible
+  
 } else
 	{
     
@@ -26,6 +26,7 @@ if (!$sock) {
     echo $texto_final;
                 
 }
+
 ?>
  
  </body>
