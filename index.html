@@ -1,10 +1,10 @@
 <html> 
- <title>HTML with PHP</title>
+ <title>WikiNotion</title>
  <body>
- <h1>My Example</h1>
+ <h1>My WikiNotion</h1>
 	 
  <?php
-# Version 1.2 by davidmartindel  (http://es.wikiquote.org/wiki/Usuario_Discusión:Davidmartindel) under GPL license
+
 $semana = date("D");
 $semanaArray = array( "Mon" => "lunes", "Tue" => "martes", "Wed" => "miércoles", "Thu" => "jueves", "Fri" => "viernes", "Sat" => "sábado", "Sun" => "domingo", ); 
 $title=urlencode(sprintf('{{Plantilla:Frase-%s}}', $semanaArray[$semana]));
@@ -14,7 +14,6 @@ if (!$sock) {
 } else
 	{
     
-	# Hacemos la peticion al servidor
 	$array__ = unserialize(stream_get_contents($sock));
 	$texto_final=$array__["parse"]["text"]["*"];
     
