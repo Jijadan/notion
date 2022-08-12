@@ -1,57 +1,53 @@
-<html> 
-<head>
-    <title>Greeting Message</title> 
-    <style>
-#lbl {
-    font-family: monospace;
-    font-size: xx-large;
-    color: #626262;
-    padding: 5px;
-    border: 1px solid #ececec;
-    text-align: center;
-    line-height: 1.5;
-    height:85%
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 
 
-}
-#date{
-    font-size:large;
-}
-body{
-    background-color: aliceblue;
-}
-    </style>
-</head>
-<body>
-    <div id="lbl"></div>
+<body  onload="dame_frase_wikiquote ();">
+ 
+ 
+ <script type="text/javascript"><!--
+var pon_frase_en_span = function (data) {
+
+frase=data['parse']['text']['*'];
+
+//para los enlaces
+frase=frase.replace(/\/wiki\//g, "http://es.wikiquote.org/wiki/")
+
+
+///////////////////////////////////
+//si para dentro de un span es asi:
+
+document.getElementById ('seoo').innerHTML =frase;
+///////////////////////////////////
+
+
+};
+
+var dame_frase_wikiquote = function () {
+var now = new Date ();
+var day = now.getDay();
+if(day == 0) titulo='{{Plantilla:Frase-domingo}}';
+if(day == 1) titulo='{{Plantilla:Frase-lunes}}';
+if(day == 2) titulo='{{Plantilla:Frase-martes}}';
+if(day == 3) titulo='{{Plantilla:Frase-miércoles}}';
+if(day == 4) titulo='{{Plantilla:Frase-jueves}}';
+if(day == 5) titulo='{{Plantilla:Frase-viernes}}';
+if(day == 6) titulo='{{Plantilla:Frase-sábado}}';
+
+
+
+ url = 'http://es.wikiquote.org/w/api.php?action=parse&text='+titulo+'&format=json&callback=pon_frase_en_span';
+
+ var elem = document.createElement ('script');
+ elem.setAttribute ('src', url);
+ elem.setAttribute ('type','text/javascript');
+ document.getElementsByTagName ('head') [0].appendChild (elem);
+};
+
+
+
+<span id="seoo"></span>
+
 </body>
 
-<script>
-    var weekday = new Array(7);
-    weekday[0] = "Sunday";
-    weekday[1] = "Monday";
-    weekday[2] = "Tuesday";
-    weekday[3] = "Wednesday";
-    weekday[4] = "Thursday";
-    weekday[5] = "Friday";
-    weekday[6] = "Saturday";
-
-    
-    var today = new Date();
-    var hrs = today.getHours();
-    var dayOfWeek = weekday[today.getDay()];
-    var date = dayOfWeek+" " + today.getDate() + "/" +(today.getMonth()+1) +'/'+today.getFullYear()  ;
-
-    var greet;
-
-    if (hrs < 12)
-        greet = 'Good Morning  ';
-    else if (hrs >= 12 && hrs <= 17)
-        greet = 'Good Afternoon ';
-    else if (hrs >= 17 && hrs <= 24)
-        greet = 'Good Evening  ';
-
-    document.getElementById('lbl').innerHTML =
-        greet+=`<div id="date"> It's ${date}</div>`;
-</script> 
 </html>
